@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SwiftGoods — Smart Finds. Fast Shipping. Top-rated everyday products shipped fast to your door." />
+  <title>SwiftGoods — Smart Finds. Fast Shipping.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand:      #0070f3;
+      --brand-dark: #0052cc;
+      --accent:     #ff6b35;
+      --dark:       #111827;
+      --mid:        #374151;
+      --muted:      #6b7280;
+      --light:      #f9fafb;
+      --border:     #e5e7eb;
+      --white:      #ffffff;
+      --green:      #10b981;
+      --radius:     12px;
+      --shadow:     0 4px 24px rgba(0,0,0,0.09);
+      --shadow-lg:  0 8px 40px rgba(0,0,0,0.14);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--brand);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--mid);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--brand); }
+    .nav-cta {
+      background: var(--brand);
+      color: var(--white) !important;
+      padding: 0.45rem 1.1rem;
+      border-radius: 8px;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--brand-dark); color: var(--white) !important; }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #0070f3 0%, #0052cc 60%, #003d99 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 5rem 1.5rem 4rem;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: #7dd3fc;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.85);
+      max-width: 560px;
+      margin: 0 auto 2rem;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--white);
+      color: var(--brand);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.85rem 2rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+    .btn-outline {
+      display: inline-block;
+      border: 2px solid rgba(255,255,255,0.5);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.85rem 2rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--light);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+    }
+    .trust-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem 3rem;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--mid);
+    }
+    .trust-icon {
+      font-size: 1.1rem;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      padding: 5rem 1.5rem;
+    }
+    .section-alt { background: var(--light); }
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-title h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+    .section-title p {
+      font-size: 1rem;
+      color: var(--muted);
+    }
+
+    /* ── PRODUCT GRID ── */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.75rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .product-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      position: relative;
+    }
+    .product-img-inner {
+      width: 100%;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+    }
+    .badge-hot {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--accent);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 100px;
+    }
+
+    .product-body {
+      padding: 1.25rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-category {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin-bottom: 0.4rem;
+    }
+    .product-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+    .product-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      flex: 1;
+      line-height: 1.55;
+    }
+    .product-bullets {
+      list-style: none;
+      margin-bottom: 1rem;
+    }
+    .product-bullets li {
+      font-size: 0.82rem;
+      color: var(--mid);
+      padding: 0.2rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+    .product-bullets li::before {
+      content: "✓";
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .product-price {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--dark);
+    }
+    .product-price span {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--muted);
+      display: block;
+      line-height: 1;
+    }
+
+    .btn-buy {
+      display: inline-block;
+      background: var(--brand);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.92rem;
+      padding: 0.7rem 1.4rem;
+      border-radius: 9px;
+      text-decoration: none;
+      text-align: center;
+      white-space: nowrap;
+      transition: background 0.15s, transform 0.15s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-buy:hover {
+      background: var(--brand-dark);
+      transform: translateY(-1px);
+    }
+    .btn-buy-accent {
+      background: var(--accent);
+    }
+    .btn-buy-accent:hover {
+      background: #e05a28;
+    }
+
+    /* Stars */
+    .stars {
+      color: #f59e0b;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+    .stars span {
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 500;
+      margin-left: 4px;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .step-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .step h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .step p {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    /* ── SOCIAL PROOF ── */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .review-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+    }
+    .review-card .stars { margin-bottom: 0.6rem; }
+    .review-text {
+      font-size: 0.9rem;
+      color: var(--mid);
+      margin-bottom: 1rem;
+      line-height: 1.55;
+      font-style: italic;
+    }
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .reviewer-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand) 0%, #7c3aed 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+    .reviewer-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .reviewer-meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* ── GUARANTEE ── */
+    .guarantee-box {
+      max-width: 700px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+      border: 1px solid #a7f3d0;
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .guarantee-box .guarantee-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .guarantee-box h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #065f46;
+      margin-bottom: 0.75rem;
+    }
+    .guarantee-box p {
+      color: #047857;
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
+    /* ── EMAIL CAPTURE ── */
+    .email-section {
+      background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+      color: white;
+      text-align: center;
+      padding: 4rem 1.5rem;
+    }
+    .email-section h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+    .email-section p {
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 1.75rem;
+      font-size: 1rem;
+    }
+    .email-form {
+      display: flex;
+      gap: 0.75rem;
+      max-width: 480px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .email-form input {
+      flex: 1;
+      min-width: 220px;
+      padding: 0.85rem 1.1rem;
+      border-radius: 9px;
+      border: none;
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .email-form input::placeholder { color: rgba(255,255,255,0.45); }
+    .email-form input:focus { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.4); }
+    .btn-email {
+      background: var(--accent);
+      color: white;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.85rem 1.5rem;
+      border-radius: 9px;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .btn-email:hover { background: #e05a28; }
+    .email-privacy {
+      margin-top: 0.75rem;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 0.82rem;
+    }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    footer a:hover { color: white; }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── SHIPPING BANNER ── */
+    .shipping-banner {
+      background: var(--green);
+      color: white;
+      text-align: center;
+      padding: 0.6rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 480px) {
+      .hero { padding: 3.5rem 1rem 3rem; }
+      .section { padding: 3.5rem 1rem; }
+      .product-footer { flex-direction: column; align-items: stretch; }
+      .btn-buy { text-align: center; }
+    }
+
+    /* ── SCROLL ANIMATION ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Shipping Banner -->
+  <div class="shipping-banner">
+    🚚 FREE SHIPPING on all orders — Limited time offer
+  </div>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="logo">Swift<span>Goods</span></a>
+      <ul class="nav-links">
+        <li><a href="#products">Products</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#products" class="nav-cta">Shop Now</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-badge">✦ Spring 2026 Collection</div>
+    <h1>Smart Finds.<br /><em>Fast Shipping.</em></h1>
+    <p>Trending everyday products that actually solve problems — shipped to your door in days, not weeks.</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-primary">Shop Top Picks →</a>
+      <a href="#how-it-works" class="btn-outline">How It Works</a>
+    </div>
+  </section>
+
+  <!-- Trust Bar -->
+  <div class="trust-bar">
+    <div class="trust-inner">
+      <div class="trust-item"><span class="trust-icon">🔒</span> Secure Checkout</div>
+      <div class="trust-item"><span class="trust-icon">🚚</span> Free Shipping</div>
+      <div class="trust-item"><span class="trust-icon">↩️</span> 30-Day Returns</div>
+      <div class="trust-item"><span class="trust-icon">⭐</span> 4.8/5 Avg Rating</div>
+      <div class="trust-item"><span class="trust-icon">💳</span> Stripe Secure Pay</div>
+    </div>
+  </div>
+
+  <!-- Products -->
+  <section class="section" id="products">
+    <div class="section-title fade-in">
+      <h2>Best Sellers This Week</h2>
+      <p>Curated picks with proven demand — fast shipping, no gimmicks.</p>
+    </div>
+    <div class="product-grid">
+
+      <!-- Product 1: Pet Hair Remover -->
+      <div class="product-card fade-in">
+        <div class="product-img">
+          <div class="product-img-inner" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);">🐾</div>
+          <span class="badge-hot">🔥 Top Seller</span>
+        </div>
+        <div class="product-body">
+          <div class="product-category">Pet Care</div>
+          <div class="stars">★★★★★ <span>4.9 (312 reviews)</span></div>
+          <div class="product-name">Pet Hair Remover Brush</div>
+          <div class="product-desc">One-pass deep clean for couches, car seats, and clothing. Self-cleaning base — press, dump, done. No refills, no batteries, no tape.</div>
+          <ul class="product-bullets">
+            <li>Removes embedded pet hair in one swipe</li>
+            <li>Works on fabric, upholstery &amp; carpet</li>
+            <li>No refills ever — self-cleaning base</li>
+          </ul>
+          <div class="product-footer">
+            <div class="product-price">$16.99 <span>Free shipping</span></div>
+            <a href="STRIPE_LINK_1" class="btn-buy btn-buy-accent" target="_blank" rel="noopener">Buy Now →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2: Safety Alarm -->
+      <div class="product-card fade-in">
+        <div class="product-img">
+          <div class="product-img-inner" style="background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);">🔑</div>
+          <span class="badge-hot">⚡ 3-Pack Deal</span>
+        </div>
+        <div class="product-body">
+          <div class="product-category">Personal Safety</div>
+          <div class="stars">★★★★★ <span>4.8 (527 reviews)</span></div>
+          <div class="product-name">Safety Alarm Keychain 3-Pack</div>
+          <div class="product-desc">130dB instant alert — louder than a car horn. Pull-pin activation in under one second. One for her, her roommate, her car.</div>
+          <ul class="product-bullets">
+            <li>130dB siren — heard 300+ feet away</li>
+            <li>One-pull activation, no aim required</li>
+            <li>Water-resistant, 30+ min battery life</li>
+          </ul>
+          <div class="product-footer">
+            <div class="product-price">$34.99 <span>3-pack · Free shipping</span></div>
+            <a href="STRIPE_LINK_2" class="btn-buy btn-buy-accent" target="_blank" rel="noopener">Buy Now →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3: Hair Straightener Brush -->
+      <div class="product-card fade-in">
+        <div class="product-img">
+          <div class="product-img-inner" style="background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);">💜</div>
+          <span class="badge-hot">✈️ Travel Pick</span>
+        </div>
+        <div class="product-body">
+          <div class="product-category">Beauty &amp; Travel</div>
+          <div class="stars">★★★★★ <span>4.7 (289 reviews)</span></div>
+          <div class="product-name">Cordless Hair Straightener Brush</div>
+          <div class="product-desc">USB-C rechargeable. Heats in 60 seconds. TSA carry-on approved. Straightens, smooths, and adds volume — no outlet required.</div>
+          <ul class="product-bullets">
+            <li>Full charge powers 30+ styles</li>
+            <li>Ionic ceramic bristles detangle while styling</li>
+            <li>TSA-approved — no adapters needed</li>
+          </ul>
+          <div class="product-footer">
+            <div class="product-price">$39.99 <span>Free shipping</span></div>
+            <a href="STRIPE_LINK_3" class="btn-buy" target="_blank" rel="noopener">Buy Now →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4: Garment Steamer -->
+      <div class="product-card fade-in">
+        <div class="product-img">
+          <div class="product-img-inner" style="background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);">👔</div>
+          <span class="badge-hot">💍 Wedding Season</span>
+        </div>
+        <div class="product-body">
+          <div class="product-category">Home &amp; Travel</div>
+          <div class="stars">★★★★★ <span>4.8 (401 reviews)</span></div>
+          <div class="product-name">Mini Garment Steamer</div>
+          <div class="product-desc">30 seconds to heat, 60 seconds to de-wrinkle a full dress shirt. No ironing board. Safe on silk, cotton, and everything in between.</div>
+          <ul class="product-bullets">
+            <li>From bag to boardroom in under 2 minutes</li>
+            <li>Safe on delicates — zero scorch risk</li>
+            <li>Carry-on size, 10+ min continuous steam</li>
+          </ul>
+          <div class="product-footer">
+            <div class="product-price">$29.99 <span>Free shipping</span></div>
+            <a href="STRIPE_LINK_4" class="btn-buy" target="_blank" rel="noopener">Buy Now →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section section-alt" id="how-it-works">
+    <div class="section-title fade-in">
+      <h2>How SwiftGoods Works</h2>
+      <p>Simple, fast, and hassle-free from click to doorstep.</p>
+    </div>
+    <div class="steps">
+      <div class="step fade-in">
+        <div class="step-icon">🔍</div>
+        <h3>Pick Your Product</h3>
+        <p>Browse our curated selection of trending everyday essentials — vetted for quality.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-icon">💳</div>
+        <h3>Secure Checkout</h3>
+        <p>Pay safely with Stripe — your card info is encrypted and never stored.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-icon">📦</div>
+        <h3>Fast Delivery</h3>
+        <p>Orders processed within 24 hours. Tracking number sent to your inbox automatically.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-icon">😊</div>
+        <h3>Love It or Return It</h3>
+        <p>30-day no-questions guarantee. If it isn't right, we'll make it right.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="section" id="reviews">
+    <div class="section-title fade-in">
+      <h2>What Customers Are Saying</h2>
+      <p>Real reviews from real buyers — no editing.</p>
+    </div>
+    <div class="reviews-grid">
+
+      <div class="review-card fade-in">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">"The pet hair brush is genuinely the best $17 I've spent this year. My couch looks brand new. I threw out every lint roller I owned."</div>
+        <div class="reviewer">
+          <div class="reviewer-avatar">JM</div>
+          <div>
+            <div class="reviewer-name">Jennifer M.</div>
+            <div class="reviewer-meta">Verified Buyer · Pet Hair Remover</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card fade-in">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">"Bought the 3-pack for my daughter heading back to college. She loves it and so do her two roommates. Exactly what I needed. Shipped fast too."</div>
+        <div class="reviewer">
+          <div class="reviewer-avatar">DL</div>
+          <div>
+            <div class="reviewer-name">Donna L.</div>
+            <div class="reviewer-meta">Verified Buyer · Safety Alarm 3-Pack</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card fade-in">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">"Used the steamer at a wedding last weekend. Packed in my carry-on, worked perfectly in the hotel room. No ironing board drama. 10/10."</div>
+        <div class="reviewer">
+          <div class="reviewer-avatar">SR</div>
+          <div>
+            <div class="reviewer-name">Samantha R.</div>
+            <div class="reviewer-meta">Verified Buyer · Mini Garment Steamer</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card fade-in">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">"The cordless straightener brush is a game-changer for travel. I took it on a 5-day trip and never needed an outlet. Hair looked great every single day."</div>
+        <div class="reviewer">
+          <div class="reviewer-avatar">KT</div>
+          <div>
+            <div class="reviewer-name">Kayla T.</div>
+            <div class="reviewer-meta">Verified Buyer · Cordless Straightener</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Guarantee -->
+  <section class="section section-alt">
+    <div class="guarantee-box fade-in">
+      <div class="guarantee-icon">🛡️</div>
+      <h3>Our 30-Day No-Questions Guarantee</h3>
+      <p>Every order from SwiftGoods is backed by our 30-day satisfaction guarantee. If your product doesn't perform exactly as described — for any reason — contact us and we'll refund you every cent. No forms, no hoops, no hassle. We stand behind every product we sell.</p>
+    </div>
+  </section>
+
+  <!-- Email Capture -->
+  <section class="email-section">
+    <h2>Get Early Access to New Deals</h2>
+    <p>Join 8,400+ subscribers who get first dibs on new products and exclusive discounts.</p>
+    <form class="email-form" onsubmit="handleEmailSubmit(event)">
+      <input type="email" placeholder="Enter your email address" required />
+      <button type="submit" class="btn-email">Get Deals →</button>
+    </form>
+    <div class="email-privacy">🔒 No spam. Unsubscribe anytime. We hate junk mail too.</div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Shipping Info</a>
+      <a href="mailto:support@swiftgoods.store">Contact Us</a>
+    </div>
+    <div>&copy; 2026 SwiftGoods. All rights reserved. Secure payments powered by Stripe.</div>
+  </footer>
+
+  <script>
+    // Scroll fade-in animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Email capture
+    function handleEmailSubmit(e) {
+      e.preventDefault();
+      const input = e.target.querySelector('input');
+      const btn = e.target.querySelector('button');
+      btn.textContent = '✓ You\'re in!';
+      btn.style.background = '#10b981';
+      input.value = '';
+      input.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Get Deals →';
+        btn.style.background = '';
+        input.disabled = false;
+      }, 4000);
+    }
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (id === '#') return;
+        const target = document.querySelector(id);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
